@@ -1,0 +1,122 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="actionMenuTextColor">@android:color/white</item>
+    </style>
+
+    <style name="myTransparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+
+    <!--消息数量-->
+    <style name="badge_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">14dp</item>
+        <item name="android:minWidth">14dp</item>
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_badge_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <!-- 应用页弹出Popupwindow -->
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="progressbar_hor" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:maxHeight">5dp</item>
+        <item name="android:minHeight">5dp</item>
+        <item name="android:progressDrawable">@drawable/layer_list_progress</item>
+    </style>
+
+    <!-- dialog style -->
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:titleTextColor">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="use_popupwindow_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/dodgerblue</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingTop">15sp</item>
+        <item name="android:paddingBottom">15sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="horizontal_divider_e3">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/color_text_gray_two</item>
+    </style>
+
+    <style name="InfoTextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textIsSelectable">true</item>
+    </style>
+
+    <style name="InfoTextStyle2" parent="InfoTextStyle">
+        <item name="android:textColor">@color/nav_on</item>
+    </style>
+
+    <style name="Theme.notAnimation" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/notAnimation</item>
+    </style>
+
+    <!--activity 切换无动画-->
+    <style name="notAnimation">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+    <!--加载框-->
+    <style name="SpotsDialogDefault" parent="android:Theme.DeviceDefault.Dialog">
+        <!--<item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>-->
+        <item name="DialogTitleText">Updating…</item>
+        <item name="DialogSpotColor">@color/nav_on</item>
+        <item name="DialogSpotCount">4</item>
+    </style>
+
+
+    <style name="RadioButtonBottomTab">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@drawable/txtcolor_gray2oran_sel</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+</resources>

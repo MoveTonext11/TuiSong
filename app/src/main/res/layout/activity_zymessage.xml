@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical"
+              tools:context=".Activity.ZyMessageActivity">
+
+    <include layout="@layout/layout_title"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <!--身份信息-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/InfoTextStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="身份证号　"/>
+
+                    <TextView
+                        android:id="@+id/tv_card_number"
+                        style="@style/InfoTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/royalblue"
+                        android:textSize="@dimen/t16"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                            <!--姓名-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/InfoTextStyle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="姓名　　　"/>
+
+                            <TextView
+                                android:id="@+id/tv_card_name"
+                                style="@style/InfoTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text=""/>
+                        </LinearLayout>
+                            <!--性别-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/InfoTextStyle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="性别　　　"/>
+
+                            <TextView
+                                android:id="@+id/tv_card_sex"
+                                style="@style/InfoTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </LinearLayout>
+                            <!--民族-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/InfoTextStyle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="民族　　　"/>
+
+                            <TextView
+                                android:id="@+id/tv_card_nation"
+                                style="@style/InfoTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </LinearLayout>
+                        <!--出生日期隐藏-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                style="@style/InfoTextStyle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="出生日期　"/>
+
+                            <TextView
+                                android:id="@+id/tv_card_birthday"
+                                style="@style/InfoTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="right|center_vertical"
+                                android:text="xxx"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/InfoTextStyle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="属地分局　"/>
+
+                            <TextView
+                                android:id="@+id/tv_card_original"
+                                style="@style/InfoTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="32dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/InfoTextStyle2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="布控级别　"/>
+
+                            <TextView
+                                android:id="@+id/tv_card_rank"
+                                style="@style/InfoTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </LinearLayout>
+                    </android.support.v7.widget.LinearLayoutCompat>
+
+                    <LinearLayout
+                        android:layout_width="96dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/card_photo"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="4"
+                            android:scaleType="fitXY"
+                            android:visibility="visible"
+                            />
+
+                        <TextView
+                            android:id="@+id/textViewState"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="center"
+                            android:text="点击图片可查看大图"
+                            android:textColor="@color/salmon"
+                            android:textSize="14sp"/>
+                        <!--点击图片可查看大图-->
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="32dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="出现地点"/>
+
+                        <TextView
+                            android:id="@+id/tv_card_source"
+                            style="@style/InfoTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical|right"
+                            android:text="xxx"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="布控原因　"/>
+
+
+                        <TextView
+                            android:id="@+id/tv_card_reason"
+                            style="@style/InfoTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/royalblue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="数据来源　"/>
+
+                        <TextView
+                            android:id="@+id/tv_card_origin"
+                            style="@style/InfoTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_copy_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="复制信息"
+                        android:textColor="@color/cornflowerblue"
+                        android:textSize="@dimen/t18"
+                        android:visibility="gone"/>
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+            </LinearLayout>
+
+            <!--责任民警信息-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:id="@+id/tv_card_collect_info"
+                        style="@style/InfoTextStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="责任民警信息"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="2dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_card_collect_police"
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="布控民警　"/>
+
+                        <TextView
+                            android:id="@+id/tv_card_police"
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="联系方式　"/>
+
+                        <TextView
+                            android:id="@+id/tv_card_police_phone"
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:autoLink="phone"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_card_police_location"
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--车次信息-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="7dp">
+
+                    <TextView
+                        android:id="@+id/tv_ticket_info"
+                        style="@style/InfoTextStyle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="车票信息"
+                        android:textSize="16sp"/>
+
+                    <LinearLayout
+                        android:id="@+id/ll_ticket_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:orientation="horizontal"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="32dp"
+                                android:layout_marginTop="2dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/InfoTextStyle2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="列车车次　"/>
+
+                                <TextView
+                                    android:id="@+id/tv_station_train"
+                                    style="@style/InfoTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="32dp"
+                                android:layout_marginTop="2dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    style="@style/InfoTextStyle2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="检票口　　"/>
+
+                                <TextView
+                                    android:id="@+id/tv_station_number"
+                                    style="@style/InfoTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="32dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_destination"
+                                    style="@style/InfoTextStyle2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="目的地　　"/>
+
+                                <TextView
+                                    android:id="@+id/tv_station_destination"
+                                    style="@style/InfoTextStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_rail_station"
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_card_station_time"
+                            style="@style/InfoTextStyle"
+                            android:gravity="center_vertical|right"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/red"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="比对时间(巨龙)"/>
+
+                        <TextView
+                            android:id="@+id/tv_card_compare_state"
+                            style="@style/InfoTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical|right"
+                            android:text=""
+                            android:textColor="@color/red"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/InfoTextStyle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="推送时间(安荣)"/>
+
+                        <TextView
+                            android:id="@+id/tv_card_receive_time"
+                            style="@style/InfoTextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical|right"
+                            android:text=""
+                            android:textColor="@color/red"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

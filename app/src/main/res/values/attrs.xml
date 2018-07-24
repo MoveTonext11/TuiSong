@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="crLayout">
+        <!-- 自定义加载更多 res layout id-->
+        <attr name="load_layout" format="reference" />
+        <!--加载更多显示的文字-->
+        <attr name="load_text" format="string" />
+        <!--加载更多的进度菊花-->
+        <attr name="load_indeterminate_drawable" format="reference" />
+        <!--加载更多完成显示的文字-->
+        <attr name="load_completed_text" format="string" />
+        <!--加载更多layout有动画显示效果-->
+        <attr name="load_animator" format="boolean"/>
+        <attr name="empty_text" format="string"/>
+    </declare-styleable>
+
+
+    <!--自定义属性 -->
+    <declare-styleable name="ClipViewLayout">
+        <attr name="clipType" format="enum">
+            <enum name="circle" value="1" />
+            <enum name="rectangle" value="2" />
+        </attr>
+        <attr name="mHorizontalPadding" format="dimension" />
+        <attr name="clipBorderWidth" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="Dialog">
+        <attr name="DialogTitleAppearance" format="reference" />
+        <attr name="DialogTitleText" format="reference|string" />
+        <attr name="DialogSpotColor" format="reference|color"/>
+        <attr name="DialogSpotCount" format="integer"/>
+    </declare-styleable>
+
+    <!-- 带下划线的按钮 -->
+    <declare-styleable name="underLineBtn">
+        <attr name="unCheckedColor" format="reference|color"/><!-- 未选中时颜色 -->
+        <attr name="checkedColor" format="reference|color"/><!-- 选中时颜色 -->
+        <attr name="isChecked" format="boolean"/><!-- 是否选中 -->
+        <attr name="lineHeight" format="dimension"/><!-- 底部线的高度 -->
+        <attr name="lineWight" format="dimension"/><!-- 底部线的宽度 -->
+        <attr name="text" format="string"/><!-- 中间文本内容 -->
+        <attr name="textSize" format="dimension"/><!-- 中间字体大小 -->
+    </declare-styleable>
+
+    <!--日历-->
+    <declare-styleable name="CircularEventCellView">
+        <attr name="event_radius" format="dimension" />
+        <attr name="event_circle_padding" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="EventCountCellView">
+        <attr name="event_count_radius" format="dimension" />
+        <attr name="event_background" format="color" />
+        <attr name="event_count_text_color" format="color" />
+        <attr name="event_text_size" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="FlexibleCalendarView">
+        <attr name="startDisplayYear" format="integer" />
+        <attr name="startDisplayMonth" format="integer" />
+        <attr name="weekDayHorizontalSpacing" format="dimension" />
+        <attr name="weekDayVerticalSpacing" format="dimension" />
+        <attr name="monthDayHorizontalSpacing" format="dimension" />
+        <attr name="monthDayVerticalSpacing" format="dimension" />
+        <attr name="weekViewBackground" format="reference" />
+        <attr name="monthViewBackground" format="reference" />
+        <attr name="showDatesOutsideMonth" format="boolean" />
+        <attr name="decorateDatesOutsideMonth" format="boolean" />
+        <attr name="disableAutoDateSelection" format="boolean" />
+        <attr name="startDayOfTheWeek" format="enum">
+            <enum name="SUNDAY" value="1" />
+            <enum name="MONDAY" value="2" />
+            <enum name="TUESDAY" value="3" />
+            <enum name="WEDNESDAY" value="4" />
+            <enum name="THURSDAY" value="5" />
+            <enum name="FRIDAY" value="6" />
+            <enum name="SATURDAY" value="7" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="CellState">
+        <attr name="state_date_regular" format="boolean" />
+        <attr name="state_date_today" format="boolean" />
+        <attr name="state_date_selected" format="boolean" />
+        <attr name="state_date_outside_month" format="boolean" />
+    </declare-styleable>
+        <declare-styleable name="RatioCircleView">
+            <attr name="stroke_width" format="dimension" />
+            <attr name="gap_width" format="dimension" />
+
+            <attr name="filled_gap_color" format="color" />
+            <attr name="unfilled_gap_color" format="color" />
+            <attr name="stroke_color" format="color" />
+
+            <attr name="start_angle" format="float" />
+
+            <attr name="total" format="integer"/>
+            <attr name="covered_count" format="integer"/>
+
+            <attr name="above_text_color" format="color"/>
+            <attr name="below_text_color" format="color"/>
+            <attr name="center_text_color" format="color"/>
+            <attr name="rest_count_color" format="color"/>
+            <attr name="enable_animation" format="boolean"/>
+        </declare-styleable>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/navajowhite"
+                tools:context=".Activity.ZoomImageActivity">
+
+    <include layout="@layout/layout_title"/>
+
+    <com.jilin.example.ziang.tuisong.Activity.ZoomImageView
+        android:id="@+id/zi_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="matrix"
+       />
+
+    <Button
+        android:id="@+id/btn_show_pop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_bg_btn_blue"
+        android:text="分享"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/m10"
+        android:text="提示：双指捏合、撑开可放大缩小图片"
+        android:textColor="@color/red"/>
+
+</RelativeLayout>

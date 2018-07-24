@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">消息推送</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="open">打开</string>
+    <string name="colose">关闭</string>
+    <string name="please_waite_to_refresh">正在加载，请稍后&#8230;</string>
+    <string name="refresh_failed">加载失败，请点击重试</string>
+    <string name="data_loaded">数据已全部加载</string>
+    <string name="no_data">暂时没有数据</string>
+    <string name="cancel">取消</string>
+    <string name="sure">确定</string>
+
+    <string name="yt_webview_pull_to_refresh">下拉刷新</string>
+    <string name="yt_webview_release_to_refresh">释放立即刷新</string>
+    <string name="yt_webview_refreshing">正在刷新...</string>
+    <string name="yt_webview_refresh_success">刷新成功</string>
+    <string name="yt_webview_refresh_fail">刷新失败</string>
+    <string name="string_problem1">&#160;&#160;&#8226;&#160;&#160;清理缓存之后，无法登录</string>
+    <string name="string_problem2">&#160;&#160;&#8226;&#160;&#160;网络异常，重新登录方法</string>
+    <string name="string_problem3">&#160;&#160;&#8226;&#160;&#160;头像更换方法</string>
+    <string name="string_problem4">&#160;&#160;&#8226;&#160;&#160;如何添加警务常用应用</string>
+    <string name="string_problem5">&#160;&#160;&#8226;&#160;&#160;搜索功能</string>
+    <string name="string_un_useful">本月签到总天数小于15天视为本月使用未达到要求</string>
+</resources>
