@@ -7,6 +7,10 @@ package com.jilin.example.ziang.tuisong;
  * @introduce
  */
 public interface Constant {
+    String TJserver="20.3.2.47";
+    int TJport = 9966;
+    String LSserver = "待定";
+    int LSport = 0000;
     String HOST = "/dcojp-web/Html/";
     String UPLOAD_PHOTO = "/dcojp-api/ajax/uploadHttpImg.do";
     String PUSH_DATA = "push_data";

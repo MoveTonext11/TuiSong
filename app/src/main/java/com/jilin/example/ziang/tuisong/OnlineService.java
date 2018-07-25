@@ -15,15 +15,14 @@ import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-
 import com.jilin.example.ziang.tuisong.Activity.MessageActivity;
 import com.jilin.example.ziang.tuisong.Bean.TodoMessage;
 import com.jilin.example.ziang.tuisong.Utils.GsonUtil;
 import com.jilin.example.ziang.tuisong.Utils.LiteOrmDBUtil;
 import com.jilin.example.ziang.tuisong.Utils.LogUtil;
 import com.jilin.example.ziang.tuisong.Utils.NetUtil;
-import com.jilin.example.ziang.tuisong.Utils.StringUtil;
 
+import org.ddpush.im.util.StringUtil;
 import org.ddpush.im.v1.client.appuser.Message;
 import org.ddpush.im.v1.client.appuser.TCPClientBase;
 
@@ -177,15 +176,14 @@ public class OnlineService extends Service {
             }
         }
         try {
-//            String identifier = UserService.getNewUserInfo(this).getIdentifier();
-//            if (identifier.length() >= IDENTIFY_LENGTH) {
-//                identifier = identifier.substring(2, 18);
-//            }
-//            myTcpClient = new MyTcpClient(
-//                    StringUtil.String16ToByteArray(identifier), 1,
-//                    "20.3.2.47", 9966);
-//            myTcpClient.setHeartbeatInterval(50);
-//            myTcpClient.start();
+            String identifier = UserService.getNewUserInfo(this).getIdentifier();
+            if (identifier.length() >= IDENTIFY_LENGTH) {
+                identifier = identifier.substring(2, 18);
+            }
+            //tcpclient  服务器切换   端口对接（）
+            myTcpClient = new MyTcpClient(StringUtil.String16ToByteArray(identifier), 1, Constant.TJserver, Constant.TJport);
+            myTcpClient.setHeartbeatInterval(50);
+            myTcpClient.start();
             LogUtil.d("启动成功 service");
         } catch (Exception e) {
             Log.d("Push：", "操作失败：" + e.getMessage());
@@ -236,7 +234,6 @@ public class OnlineService extends Service {
 
     /**
      * 播放系统铃声
-     *
      * @return
      * @throws Exception
      * @throws IOException
@@ -280,7 +277,7 @@ public class OnlineService extends Service {
     public void notifyFocusUser(int id, String title, String content, TodoMessage msg) {
         NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification.Builder builder = new Notification.Builder(getApplicationContext());
-        builder.setContentInfo(StringUtil.stampToTime(msg.getTime()));
+        builder.setContentInfo(com.jilin.example.ziang.tuisong.Utils.StringUtil.stampToTime(msg.getTime()));
         builder.setContentText(content);
         builder.setContentTitle(title);
         builder.setSmallIcon(R.mipmap.icon_laucher);
@@ -291,7 +288,10 @@ public class OnlineService extends Service {
         intent.putExtra(Constant.PUSH_DATA, msg.getType());
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         builder.setContentIntent(pendingIntent);
-        Notification notification = builder.build();
+        Notification notification = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            notification = builder.build();
+        }
         notificationManager.notify(id, notification);
     }
 }
