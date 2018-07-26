@@ -176,12 +176,15 @@ public class OnlineService extends Service {
             }
         }
         try {
-            String identifier = UserService.getNewUserInfo(this).getIdentifier();
+            //启动服务  必须获取用户信息，调取统一认证之后   做用户信息的数据存储    在此获取标识符信息   启动服务
+//            String identifier = UserService.getNewUserInfo(this).getIdentifier();
+            String identifier = "120111198001010058";
+            //18位身份证信息
             if (identifier.length() >= IDENTIFY_LENGTH) {
                 identifier = identifier.substring(2, 18);
             }
             //tcpclient  服务器切换   端口对接（）
-            myTcpClient = new MyTcpClient(StringUtil.String16ToByteArray(identifier), 1, Constant.TJserver, Constant.TJport);
+            myTcpClient = new MyTcpClient(StringUtil.String16ToByteArray(identifier), 1, Constant.LSserver, Constant.LSport);
             myTcpClient.setHeartbeatInterval(50);
             myTcpClient.start();
             LogUtil.d("启动成功 service");
@@ -288,10 +291,7 @@ public class OnlineService extends Service {
         intent.putExtra(Constant.PUSH_DATA, msg.getType());
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         builder.setContentIntent(pendingIntent);
-        Notification notification = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            notification = builder.build();
-        }
+        Notification notification = builder.build();
         notificationManager.notify(id, notification);
     }
 }

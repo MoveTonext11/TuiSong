@@ -12,8 +12,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 public final class ApiServiceFactory {
 //        public static final String HOST = "http://20.3.2.47:8091";//测试环境
-//        public static final String HOST = "http://192.168.253.8:8080";//内部接口测试
-    public static final String HOST = "http://20.3.2.47:8080";//正式环境
+        public static final String HOST = "http://192.168.1.237:8080";//内部接口测试
+//    public static final String HOST = "http://20.3.2.47:8080";//正式环境
     public static final String UPDATE_HOST = "http://20.3.2.44:9086";//一键升级接口
     public static final String BASE_URL = HOST + "/dcojp-api/";
     public static final String BASE_IMG_URL = "http://";
@@ -39,7 +39,6 @@ public final class ApiServiceFactory {
 
     /**
      * 获取 ApiService 对象
-     *
      * @return Api 接口对象
      */
     public static NetInterface getApi() {

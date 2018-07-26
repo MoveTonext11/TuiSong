@@ -1,10 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'anrong'
+            keyPassword 'anrongkeji'
+            storeFile file('E:/anrong/北京安荣key')
+            storePassword 'anrongkeji'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.jilin.example.ziang.tuisong"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.0.1"
