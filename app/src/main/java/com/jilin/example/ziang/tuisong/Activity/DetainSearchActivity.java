@@ -9,6 +9,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -18,7 +19,6 @@ import com.jilin.example.ziang.tuisong.Bean.AdmComparingInfo;
 import com.jilin.example.ziang.tuisong.Bean.MessageInfo;
 import com.jilin.example.ziang.tuisong.Bean.MessageInfos;
 import com.jilin.example.ziang.tuisong.Bean.SosBean;
-import com.jilin.example.ziang.tuisong.Constant;
 import com.jilin.example.ziang.tuisong.CustomToast;
 import com.jilin.example.ziang.tuisong.DetainRoot;
 import com.jilin.example.ziang.tuisong.Page;
@@ -30,25 +30,15 @@ import com.jilin.example.ziang.tuisong.Utils.GsonUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import cn.bingoogolapple.refreshlayout.BGAMeiTuanRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetainSearchActivity extends ToolBarActivity implements BGARefreshLayout.BGARefreshLayoutDelegate, View.OnClickListener, Callback<String>, LoadMoreAdapter.LoadMoreApi {
+public class DetainSearchActivity extends ToolBarActivity implements BGARefreshLayout.BGARefreshLayoutDelegate, Callback<String>, LoadMoreAdapter.LoadMoreApi, View.OnClickListener {
 
-    @BindView(R.id.tv_search)
-    EditText tvSearch;
-    @BindView(R.id.toolbar_title)
-    TextView toolbarTitle;
-    @BindView(R.id.view_breakfast_list)
-    RecyclerView viewBreakfastList;
-    @BindView(R.id.rl_refresh)
-    BGARefreshLayout rlRefresh;
+
 
     private List<AdmComparingInfo> mMessages;
     private MessageAdapter mAdapter;
@@ -62,38 +52,51 @@ public class DetainSearchActivity extends ToolBarActivity implements BGARefreshL
     private int mNetType;
     public static final String TABLENAME = "adm_comparing_info";
     public String tableId;
-    private TextView tv_item_person_attention;
     private String search_sfzh_xm;
     private List<AdmComparingInfo> rows;
     private int position;
+    private TextView toolbarTitle;
+    private EditText tvSearch;
+    private Button btn_detain_wild_search;
+    private RecyclerView viewBreakfastList;
+    private BGARefreshLayout rlRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detain_search);
-        ButterKnife.bind(this);
+        initView();
         setRightImgGone(false);
         initRefreshLayout();
         initData();
     }
 
+    private void initView() {
+        toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+        tvSearch = (EditText) findViewById(R.id.tv_search);
+        btn_detain_wild_search = (Button) findViewById(R.id.btn_detain_wild_search);
+        viewBreakfastList = (RecyclerView) findViewById(R.id.view_breakfast_list);
+        rlRefresh = (BGARefreshLayout) findViewById(R.id.rl_refresh);
 
+        btn_detain_wild_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMessages.clear();
+                search_sfzh_xm = tvSearch.getText().toString();
+//                SosBean userInfo = UserService.getUserInfo(DetainSearchActivity.this);
+//                String code = userInfo.getCode();
+//                filter = "watch_user_code=" + code+"&keyword="+search_sfzh_xm;
+                getData(filter, pageSize, 1);
+            }
+        });
+    }
     @Override
     protected void onTitleChanged(CharSequence title, int color) {
         super.onTitleChanged(title, color);
         toolbarTitle.setText("关注失控搜索");
     }
 
-    @OnClick(R.id.btn_detain_wild_search)
-    public void onViewClicked() {
-        mMessages.clear();
-        search_sfzh_xm = tvSearch.getText().toString();
-        SosBean userInfo = UserService.getUserInfo(this);
-        String code = userInfo.getCode();
-        filter = "watch_user_code=" + code+"&keyword="+search_sfzh_xm;
-        getData(filter, pageSize, 1);
-    }
-
+    //访问库   查询人员信息   （备注：天津查询库   发布修改当地人员库）
     private void getData(String filter, int pageSize, int page) {
         mNetType = 2;
         TjApp.getRetrofit().getSearchFocusand(filter, pageSize, page).enqueue(this);
@@ -101,7 +104,7 @@ public class DetainSearchActivity extends ToolBarActivity implements BGARefreshL
 
     private void initData() {
         mMessages = new ArrayList<>();
-        mAdapter = new MessageAdapter(mMessages, this, this);
+        mAdapter = new MessageAdapter(mMessages, this);
         mLoadMoreAdapter = new LoadMoreAdapter(this, mAdapter);
         mLoadMoreAdapter.setLoadMoreListener(this);
         viewBreakfastList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -112,7 +115,7 @@ public class DetainSearchActivity extends ToolBarActivity implements BGARefreshL
     private void initRefreshLayout() {
         // 为BGARefreshLayout 设置代理
         rlRefresh.setDelegate(this);
-        BGAMeiTuanRefreshViewHolder meiTuanRefreshViewHolder = new BGAMeiTuanRefreshViewHolder(this,true);
+        BGAMeiTuanRefreshViewHolder meiTuanRefreshViewHolder = new BGAMeiTuanRefreshViewHolder(this, true);
         meiTuanRefreshViewHolder.setPullDownImageResource(R.mipmap.bga_refresh_mt_pull_down);
         meiTuanRefreshViewHolder.setChangeToReleaseRefreshAnimResId(R.drawable.bga_refresh_mt_change_to_release_refresh);
         meiTuanRefreshViewHolder.setRefreshingAnimResId(R.drawable.bga_refresh_mt_refreshing);
@@ -134,23 +137,14 @@ public class DetainSearchActivity extends ToolBarActivity implements BGARefreshL
     @SuppressLint("WrongConstant")
     @Override
     public void onClick(View view) {
-        position = (int) view.getTag();
-        AdmComparingInfo message = mMessages.get(position);
-        tv_item_person_attention = view.findViewById(R.id.tv_item_person_attention);
+        AdmComparingInfo message = mMessages.get((int)view.getTag());
         switch (view.getId()) {
-            case R.id.rl_item_msg:
-                Intent intent = new Intent(this, ZyMessageActivity.class);
-                intent.setFlags(2);
-                intent.putExtra(Constant.PUSH_DATA, message);
-                startActivity(intent);
-                break;
             case R.id.ll_focus_people_attention:
-                tableId = String.valueOf(message.getId());
-//                favoriteItem();
-                getDetain();
+
                 break;
             default:
                 break;
+
         }
     }
 
@@ -196,19 +190,20 @@ public class DetainSearchActivity extends ToolBarActivity implements BGARefreshL
 
 
     @SuppressLint("HandlerLeak")
-    Handler mHandler=new Handler(){
+    Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (msg.what==998){
+            if (msg.what == 998) {
                 mMessages.get(position).setStatus("2");
                 mLoadMoreAdapter.loadCompleted();
                 rlRefresh.endRefreshing();
-                Intent intent=new Intent("com.anrongtec.focus");
+                Intent intent = new Intent("com.anrongtec.focus");
                 LocalBroadcastManager.getInstance(DetainSearchActivity.this).sendBroadcast(intent);
             }
         }
     };
+
     /**
      * 解析数据
      *
@@ -259,12 +254,6 @@ public class DetainSearchActivity extends ToolBarActivity implements BGARefreshL
                 }
             };
             handler.post(r);
-
         }
     }
-
-
-
-
-
 }

@@ -1,6 +1,9 @@
 package com.jilin.example.ziang.tuisong.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +13,24 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jilin.example.ziang.tuisong.Activity.ZyMessageActivity;
 import com.jilin.example.ziang.tuisong.Bean.AdmComparingInfo;
+import com.jilin.example.ziang.tuisong.Bean.SosBean;
+import com.jilin.example.ziang.tuisong.Constant;
+import com.jilin.example.ziang.tuisong.CustomToast;
+import com.jilin.example.ziang.tuisong.DetainRoot;
 import com.jilin.example.ziang.tuisong.R;
+import com.jilin.example.ziang.tuisong.TjApp;
+import com.jilin.example.ziang.tuisong.UserService;
 import com.jilin.example.ziang.tuisong.Utils.BitmapUtil;
+import com.jilin.example.ziang.tuisong.Utils.GsonUtil;
 import com.jilin.example.ziang.tuisong.Utils.StationUtil;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -29,12 +44,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
 
     private Context context;
 
-    private View.OnClickListener listener;
 
-    public MessageAdapter(List<AdmComparingInfo> typeInfos, Context context, View.OnClickListener listener) {
+    public MessageAdapter(List<AdmComparingInfo> typeInfos, Context context) {
         this.typeInfos = typeInfos;
         this.context = context;
-        this.listener = listener;
     }
 
     @Override
@@ -44,7 +57,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
     }
 
     @Override
-    public void onBindViewHolder(MessageAdapterViewHolder holder, int position) {
+    public void onBindViewHolder(MessageAdapterViewHolder holder, final int position) {
         holder.setIsRecyclable(false);
         final AdmComparingInfo message = typeInfos.get(position);
         if (message != null) {
@@ -89,14 +102,55 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageA
             holder.tv_station_start_station.setText(StationUtil.getStation(start));
             holder.tv_station_end_station.setText(StationUtil.getStation(end));
 
-            holder.ll_deal.setOnClickListener(listener);
-            holder.ll_deal.setTag(position);
-            holder.ll_attention.setOnClickListener(listener);
-            holder.ll_attention.setTag(position);
+            holder.ll_deal.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            holder.ll_attention.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getDetain(String.valueOf(message.getId()),position);
+                }
+            });
 
         }
-        holder.rl_item_msg.setTag(position);
-        holder.rl_item_msg.setOnClickListener(listener);
+        holder.rl_item_msg.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ZyMessageActivity.class);
+                intent.setFlags(2);
+                intent.putExtra(Constant.PUSH_DATA, message);
+                context.startActivity(intent);
+            }
+        });
+
+    }
+
+    private void getDetain(String tableId, final int position) {
+        SosBean userInfo = UserService.getUserInfo(context);
+        String code = userInfo.getCode();
+        TjApp.getRetrofit().getDetain(tableId, "2", code).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String data = response.body();
+                DetainRoot detainRoot = GsonUtil.parseJsonWithGson(data, DetainRoot.class);
+                if (detainRoot.getStatus() == 0) {
+                    typeInfos.get(position).setStatus("2");
+                    Intent intent = new Intent("com.anrongtec.focus");
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+                } else {
+                    CustomToast.INSTANCE.showToast(context, detainRoot.getMsg());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override

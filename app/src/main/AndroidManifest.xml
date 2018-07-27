@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".Activity.EkongFocusActivity" />
         <activity android:name=".Activity.MessageActivity" />
+        <activity android:name=".Activity.DetainSearchActivity" />
+        <activity android:name=".Activity.ZyMessageActivity" />
 
         <service
             android:name="com.jilin.example.ziang.tuisong.OnlineService"

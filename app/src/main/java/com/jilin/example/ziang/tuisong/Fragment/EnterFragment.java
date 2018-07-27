@@ -121,7 +121,7 @@ public class EnterFragment extends Fragment implements BGARefreshLayout.BGARefre
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(localReceiver, intentFilter);
 
         mMessages = new ArrayList<>();
-        mAdapter = new MessageAdapter(mMessages, getActivity(), this);
+        mAdapter = new MessageAdapter(mMessages, getActivity());
         mLoadMoreAdapter = new LoadMoreAdapter(getActivity(), mAdapter);
         mLoadMoreAdapter.setLoadMoreListener(this);
         mViewBreakfastList.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
